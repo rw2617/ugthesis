@@ -1,0 +1,50 @@
+{{ block title }}Results{{ endblock }}
+{{ block content }}
+    <p>
+    {{ if player.id_in_group == 1 }}
+        <p>
+            You chose to offer a price of {{ group.price }} to Participant B.
+        </p>
+        <p>
+        {{ if group.offer_accepted == True}}
+            <p>
+                Participant B accepted this offer.
+                Thus you now have:
+                <strong>{{ player.payoff }}</strong>
+            </p>
+        {{ else }}
+            <p>
+                Participant B did not accept this offer.
+                Thus you now have:
+                <strong>{{ player.payoff }}</strong>
+            </p>
+        {{ endif }}
+    </p>
+    <p>
+    {{ else }}
+        <p>
+            Participant A offered a price of {{ group.price }}.
+        </p>
+        <p>
+        {{ if group.offer_accepted == True }}
+            <p>
+                You accepted this offer.
+                Thus you now have:
+                <strong>{{ player.payoff }}</strong>
+            </p>
+        {{ else }}
+            <p>
+                You did not accept this offer.
+                Thus you now have:
+                <strong>{{ player.payoff }}</strong>
+            </p>
+        {{ endif }}
+        </p>
+    </p>
+    {{ endif }}
+
+    {{ next_button }}
+
+    {{ include C.INSTRUCTIONS_TEMPLATE }}
+
+{{ endblock }}

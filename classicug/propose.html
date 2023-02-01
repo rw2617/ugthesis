@@ -1,0 +1,15 @@
+{{ block title }}Offer a Price{{ endblock }}
+{{ block content }}
+    <p>
+        You are <strong>Participant 1</strong>.
+        What price would you like to offer? You will receive 
+        your offer, and Participant B will receive 100 - offer.
+    </p>
+
+    {{ formfields }}
+
+    {{ next_button }}
+
+    {{ include C.INSTRUCTIONS_TEMPLATE }}
+
+{{ endblock }}

@@ -1,0 +1,13 @@
+{{ block title }}Accept or Reject{{ endblock }}
+{{ block content }}
+    <p>
+        Participant A offered price {{ group.price }}. If you accept, 
+        this means that you will receive ( {{ C.ENDOWMENT }} - {{ group.price }} ),
+        and Participant A will receive {{ group.price }}.
+    </p>
+
+    {{ formfield "offer_accepted" }}
+    {{ next_button }}
+    {{ include C.INSTRUCTIONS_TEMPLATE }}
+
+{{ endblock }}
