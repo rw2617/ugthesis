@@ -21,7 +21,7 @@
         {{ endif }}
         </p>
 
-    {{ if player.id_in_group == 2 }}
+    {{ else if player.id_in_group == 2 }}
         <p>
             You chose to offer a price of {{ group.price2 }} to the buyer.
         </p>
@@ -55,7 +55,7 @@
                 <p>
                     You accepted the offer of Seller 1.
                 </p>
-            {{ if group.offer_selected == 2 }}
+            {{ else if group.offer_selected == 2 }}
                 <p>
                     You accepted the offer of Seller 2.
                 </p>
