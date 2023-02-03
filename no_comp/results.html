@@ -1,0 +1,47 @@
+{{ block title }}Results{{ endblock }}
+{{ block content }}
+<p>
+{{ if player.id_in_group == 1 }}
+    <p>
+        You chose to offer a price of {{ group.price }} to the buyer.
+    </p>
+    <p>
+    {{ if group.offer_selected == 1}}
+        <p>
+            The buyer accepted this offer.
+            Thus you now have:
+            <strong>{{ player.payoff }}</strong>
+        </p>
+    {{ else }}
+        <p>
+            The buyer did not accept this offer.
+            Thus you now have:
+            <strong>{{ player.payoff }}</strong>
+        </p>
+    {{ endif }}
+    </p>
+
+{{ else }}
+    <p>
+        The Seller offered a price of {{ group.price }} to you.
+    </p>
+    {{ if group.offer_selected == 1 }}
+        <p>
+            You accepted the offer of the Seller.
+        </p>
+    {{ else }}
+        <p>
+            You did not accept the offer.
+        </p>
+    {{ endif }}
+    <p>
+        Thus you now have:
+        <strong>{{ player.payoff }}</strong>
+    </p>
+{{ endif }}
+    
+{{ next_button }}
+
+{{ include C.INSTRUCTIONS_TEMPLATE }}
+
+{{ endblock }}

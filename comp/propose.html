@@ -1,0 +1,31 @@
+{{ block title }}Offer a Price{{ endblock }}
+{{ block content }}
+    <p>
+        You are a <strong>Seller</strong>.
+    </p>
+
+    <p>
+        You and another seller will both offer a price to the buyer. The buyer 
+        can accept one or none of the offers. If the buyer accepts your offer, 
+        you will receive your offer, and the buyer will receive either 50 - 
+        price or 150 - price. If your price is rejected, you will receive 0. 
+    </p>
+
+    {{ if 'known_probability' in session.config }}
+        <p>
+            The buyer has value = 50 with probability 50% and value = 150
+            with probability 50%.
+        </p>
+    {{ endif }}
+    
+    <p>
+        What price would you like to offer?
+    </p>
+
+    {{ formfields }}
+
+    {{ next_button }}
+
+    {{ include C.INSTRUCTIONS_TEMPLATE }}
+
+{{ endblock }}

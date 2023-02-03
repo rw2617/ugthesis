@@ -2,45 +2,33 @@ from os import environ
 
 SESSION_CONFIGS = [
 
-    
+    #competition
     dict(
         name='competition_risk',
-        app_sequence=['ugthesis'],
-        proposer_competition=True,
-        known_probability=True,
+        app_sequence=['comp'],
         num_demo_participants=3,
+        known_probability=True,
     ),
     
-
     dict(
         name='competition_uncertain',
-        app_sequence=['ugthesis'],
-        proposer_competition=True,
-        known_probability=False,
+        app_sequence=['comp'],
         num_demo_participants=3,
     ),
 
+    #no competition
     dict(
-        name='nocompetition_risk',
-        app_sequence=['ugthesis'],
-        proposer_competition=False,
+        name='no_competition_risk',
+        app_sequence=['no_comp'],
+        num_demo_participants=2,
         known_probability=True,
-        num_demo_participants=2,
     ),
 
     dict(
-        name='nocompetition_uncertain',
-        app_sequence=['ugthesis'],
-        proposer_competition=False,
-        known_probability=False,
+        name='no_competition_uncertain',
+        app_sequence=['no_comp'],
         num_demo_participants=2,
-    ),
-
-    dict(
-        name='classicug',
-        app_sequence=['classicug'],
-        num_demo_participants=2,
-    ),
+    )
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs

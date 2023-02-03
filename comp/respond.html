@@ -1,0 +1,29 @@
+{{ block title }}Accept or Reject{{ endblock }}
+{{ block content }}
+
+    <p>
+        You are a <strong>Buyer</strong>, and your value is <strong>{{ group.value }}</strong>.
+    </p>
+
+    <p>
+        Seller 1 offered price {{ group.price1 }}. If you accept, 
+        this means that you will receive {{ responder_payoff1 }} 
+        and the seller will receive {{ group.price1 }}.
+    </p>
+
+    <p>
+        Seller 2 offered price {{ group.price2 }}. If you accept, 
+        this means that you will receive {{ responder_payoff2 }},
+        and the seller will receive {{ group.price2 }}.
+    </p>
+
+    <p>
+        If you accept None, everyone will receive a payoff of 0
+    </p>
+
+    {{ formfield "offer_selected" }}
+
+{{ next_button }}
+{{ include C.INSTRUCTIONS_TEMPLATE }}
+
+{{ endblock }}
