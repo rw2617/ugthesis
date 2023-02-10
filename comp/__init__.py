@@ -46,37 +46,12 @@ class Subsession(BaseSubsession):
 def creating_session(subsession):
             for group in subsession.get_groups():
                 group.value = random.choice([50, 150])
-                print(group.value)
 
 class Player(BasePlayer):
     price = models.IntegerField(
         min=0,
         max=150,
     )
-
-
-# FUNCTIONS
-
-def set_payoffs(group: Group):
-
-    p1 = group.get_player_by_id(1)
-    p2 = group.get_player_by_id(2)
-    p3 = group.get_player_by_id(3)
-
-    if group.offer_selected == 1:
-        p1.payoff = group.price1
-        p2.payoff = 0
-        p3.payoff = group.value - group.price1
-
-    if group.offer_selected == 2:
-        p1.payoff = 0
-        p2.payoff = group.price2
-        p3.payoff = group.value - group.price2
-
-    else:
-        p1.payoff = 0
-        p2.payoff = 0
-        p3.payoff = 0
 
 
 # PAGES
@@ -128,6 +103,31 @@ class Respond(Page):
             responder_payoff1=group.value - group.price1,
             responder_payoff2=group.value - group.price2,
             )
+
+def set_payoffs(group):
+
+    p1 = group.get_player_by_id(1)
+    p2 = group.get_player_by_id(2)
+    p3 = group.get_player_by_id(3)
+
+    if group.offer_selected == 1:
+        p1.payoff = group.price1
+        p2.payoff = 0
+        p3.payoff = group.value - group.price1
+
+    if group.offer_selected == 2:
+        p1.payoff = 0
+        p2.payoff = group.price2
+        p3.payoff = group.value - group.price2
+
+    else:
+        p1.payoff = 0
+        p2.payoff = 0
+        p3.payoff = 0
+    print(p1.payoff)
+    print(p2.payoff)
+    print(p3.payoff)
+
 
 class RespondWaitPage(WaitPage):
     after_all_players_arrive = set_payoffs
