@@ -8,9 +8,11 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'no_comp'
-    NUM_ROUNDS = 1
+    NUM_ROUNDS = 2
     INSTRUCTIONS_TEMPLATE = 'no_comp/instructions.html'
     PLAYERS_PER_GROUP = 2
+    SELLER_ROLE = 'Seller'
+    BUYER_ROLE = 'Buyer'
 
 
 class Group(BaseGroup):
@@ -36,9 +38,9 @@ class Subsession(BaseSubsession):
     pass
 
 def creating_session(subsession):
-            for group in subsession.get_groups():
-                group.value = random.choice([50, 150])
-                print(group.value)
+
+    for group in subsession.get_groups():
+        group.value = random.choice([50, 150])
 
 class Player(BasePlayer):
     price = models.IntegerField(
@@ -58,10 +60,10 @@ def set_payoffs(group: Group):
         p1.payoff = group.price
         p2.payoff = group.value - group.price
 
-    else:
+    if group.offer_selected == 2:
         p1.payoff = 0
         p2.payoff = 0
-
+    
 
 # PAGES
 class Introduction(Page):
@@ -126,6 +128,13 @@ class Results(Page):
             )"""
     pass
 
+class ShuffleWaitPage(WaitPage):
+    wait_for_all_groups = True
+
+    @staticmethod
+    def after_all_players_arrive(subsession):
+        subsession.group_randomly(fixed_id_in_group=True)
+
 
 page_sequence = [
     Introduction,
@@ -134,4 +143,6 @@ page_sequence = [
     Respond,
     RespondWaitPage,
     Results,
+    ShuffleWaitPage,
 ]
+
