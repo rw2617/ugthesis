@@ -62,12 +62,6 @@ def set_payoffs(group: Group):
             p2.payoff = 0
             p3.payoff = group.value - group.price1
         
-        print(p1.payoff)
-        print(p2.payoff)
-        print(p3.payoff)
-        print(p1)
-        print(p2)
-        print(p3)
 
 class Subsession(BaseSubsession):
     pass
