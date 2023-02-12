@@ -8,7 +8,7 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'competition'
-    NUM_ROUNDS = 1
+    NUM_ROUNDS = 2
     INSTRUCTIONS_TEMPLATE = 'comp/instructions.html'
     PLAYERS_PER_GROUP = 3
 
@@ -38,7 +38,36 @@ class Group(BaseGroup):
             [2, 'Price 2'],
             [3, 'None'],
         ]
-)
+    )
+
+
+def set_payoffs(group: Group):
+
+        p1 = group.get_player_by_id(1)
+        p2 = group.get_player_by_id(2)
+        p3 = group.get_player_by_id(3)
+
+        if group.offer_selected == 3:
+            p1.payoff = 0
+            p2.payoff = 0
+            p3.payoff = 0
+
+        if group.offer_selected == 2:
+            p1.payoff = 0
+            p2.payoff = group.price2
+            p3.payoff = group.value - group.price2
+
+        if group.offer_selected == 1:
+            p1.payoff = group.price1
+            p2.payoff = 0
+            p3.payoff = group.value - group.price1
+        
+        print(p1.payoff)
+        print(p2.payoff)
+        print(p3.payoff)
+        print(p1)
+        print(p2)
+        print(p3)
 
 class Subsession(BaseSubsession):
     pass
@@ -104,30 +133,6 @@ class Respond(Page):
             responder_payoff2=group.value - group.price2,
             )
 
-def set_payoffs(group):
-
-    p1 = group.get_player_by_id(1)
-    p2 = group.get_player_by_id(2)
-    p3 = group.get_player_by_id(3)
-
-    if group.offer_selected == 1:
-        p1.payoff = group.price1
-        p2.payoff = 0
-        p3.payoff = group.value - group.price1
-
-    if group.offer_selected == 2:
-        p1.payoff = 0
-        p2.payoff = group.price2
-        p3.payoff = group.value - group.price2
-
-    else:
-        p1.payoff = 0
-        p2.payoff = 0
-        p3.payoff = 0
-    print(p1.payoff)
-    print(p2.payoff)
-    print(p3.payoff)
-
 
 class RespondWaitPage(WaitPage):
     after_all_players_arrive = set_payoffs
@@ -135,11 +140,11 @@ class RespondWaitPage(WaitPage):
 
 class Results(Page):
     """This page displays the earnings of each player"""
-    @staticmethod
+    """@staticmethod
     def vars_for_template(player: Player):
         return dict(
-            payoff=player.payoff,
-        )
+            payoff=participant.payoff,
+        )"""
 
 
 page_sequence = [

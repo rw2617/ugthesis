@@ -10,13 +10,13 @@
             <p>
                 The buyer accepted this offer.
                 Thus you now have:
-                <strong>{{ payoff }}</strong>
+                <strong>{{ participant.payoff }}</strong>
             </p>
         {{ else }}
             <p>
                 The buyer did not accept this offer.
                 Thus you now have:
-                <strong>{{ payoff }}</strong>
+                <strong>{{ participant.payoff }}</strong>
             </p>
         {{ endif }}
         </p>
@@ -30,13 +30,13 @@
             <p>
                 The buyer accepted this offer.
                 Thus you now have:
-                <strong>{{ payoff }}</strong>
+                <strong>{{ participant.payoff }}</strong>
             </p>
         {{ else }}
             <p>
                 The buyer did not accept this offer.
                 Thus you now have:
-                <strong>{{ payoff }}</strong>
+                <strong>{{ participant.payoff }}</strong>
             </p>
         {{ endif }}
         </p>
@@ -65,7 +65,7 @@
 
         <p>
             Thus you now have:
-            <strong>{{ payoff }}</strong>
+            <strong>{{ participant.payoff }}</strong>
         </p>
         {{ endif }}
     
