@@ -9,14 +9,14 @@
         {{ if group.offer_selected == 1}}
             <p>
                 The buyer accepted this offer.
-                Thus you now have:
-                <strong>{{ participant.payoff }}</strong>
+                This round you have earned:
+                <strong>{{ player.payoff }}</strong>
             </p>
         {{ else }}
             <p>
                 The buyer did not accept this offer.
-                Thus you now have:
-                <strong>{{ participant.payoff }}</strong>
+                This round you have earned:
+                <strong>{{ player.payoff }}</strong>
             </p>
         {{ endif }}
         </p>
@@ -29,14 +29,14 @@
         {{ if group.offer_selected == 2}}
             <p>
                 The buyer accepted this offer.
-                Thus you now have:
-                <strong>{{ participant.payoff }}</strong>
+                This round you have earned:
+                <strong>{{ player.payoff }}</strong>
             </p>
         {{ else }}
             <p>
                 The buyer did not accept this offer.
-                Thus you now have:
-                <strong>{{ participant.payoff }}</strong>
+                This round you have earned:
+                <strong>{{ player.payoff }}</strong>
             </p>
         {{ endif }}
         </p>
@@ -64,8 +64,8 @@
         {{ endif }}
 
         <p>
-            Thus you now have:
-            <strong>{{ participant.payoff }}</strong>
+            This round you have earned:
+            <strong>{{ player.payoff }}</strong>
         </p>
         {{ endif }}
     
