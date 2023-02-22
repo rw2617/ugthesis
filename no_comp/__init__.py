@@ -28,11 +28,20 @@ class Group(BaseGroup):
     )
     
     offer_selected = models.IntegerField(
+        initial=0,
         choices=[
             [1, 'Accept'],
             [2, 'Reject'],
         ]
-)
+    )
+
+    offer_selected2 = models.IntegerField(
+        initial=0,
+        choices=[
+            [2, 'Reject'],
+        ]
+    )
+
 
 class Subsession(BaseSubsession):
     pass
@@ -56,11 +65,18 @@ def set_payoffs(group: Group):
     p1 = group.get_player_by_id(1)
     p2 = group.get_player_by_id(2)
 
-    if group.offer_selected == 1:
+    offer_selected = group.field_maybe_none('offer_selected')
+    offer_selected2 = group.field_maybe_none('offer_selected2')
+
+    if offer_selected == 1:
         p1.payoff = group.price
         p2.payoff = group.value - group.price
 
-    if group.offer_selected == 2:
+    if offer_selected == 2:
+        p1.payoff = 0
+        p2.payoff = 0
+
+    if offer_selected2 == 2:
         p1.payoff = 0
         p2.payoff = 0
     
@@ -74,7 +90,7 @@ class Propose(Page):
     """This page is only for seller
     seller offers a price. seller receives price and buyer receives
     value - price if buyer accepts. If buyer rejects, then both receive 0."""
-
+        
     form_model = 'player'
     form_fields = ['price']
 
@@ -96,14 +112,19 @@ class Respond(Page):
     """This page is only for buyer
     buyer accepts or declines"""
 
-    form_model = 'group'
-    form_fields = ['offer_selected']
+    @staticmethod
+    def get_form_fields(player):
+        if player.group.price > player.group.value:
+            return ['offer_selected2']
+        else:
+            return ['offer_selected']
 
+    form_model = 'group'
+    #form_fields = ['offer_selected']
     
     @staticmethod
     def is_displayed(player: Player):
         return player.id_in_group == 2
-
 
     @staticmethod
     def vars_for_template(player: Player):

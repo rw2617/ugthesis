@@ -4,18 +4,24 @@
     <p>
         You are a <strong>Buyer</strong>, and your value is <strong>{{ group.value }}</strong>.
     </p>
-    
-    <p>
-        The seller offered price {{ group.price }}. If you accept, 
-        this means that you will receive {{ responder_payoff }},
-        and the seller will receive {{ group.price }}.
-    </p>
+    {{ if group.price > group.value}}
+        <p>
+            The seller offered price {{ group.price }}. 
+            Because {{ group.price }} is greater than your value, 
+            {{ group.value }}, you cannot accept this offer.
+        </p>
+    {{ else }}
+        <p>
+            The seller offered price {{ group.price }}. If you accept, 
+            this means that you will receive {{ responder_payoff }},
+            and the seller will receive {{ group.price }}.
+        </p>
+        <p>
+            If you reject, both you and the seller will receive a payoff of 0
+        </p>
+    {{ endif }}
 
-    <p>
-        If you reject, both you and the seller will receive a payoff of 0
-    </p>
-
-    {{ formfield "offer_selected" }}
+    {{ formfields }}
     
     {{ next_button }}
     {{ include C.INSTRUCTIONS_TEMPLATE }}
