@@ -28,6 +28,7 @@ class Group(BaseGroup):
     )
     
     offer_selected = models.IntegerField(
+        label="Make a selection.",
         initial=0,
         choices=[
             [1, 'Accept'],
@@ -36,6 +37,7 @@ class Group(BaseGroup):
     )
 
     offer_selected2 = models.IntegerField(
+        label="Make a selection.",
         initial=0,
         choices=[
             [2, 'Reject'],
@@ -120,7 +122,6 @@ class Respond(Page):
             return ['offer_selected']
 
     form_model = 'group'
-    #form_fields = ['offer_selected']
     
     @staticmethod
     def is_displayed(player: Player):
