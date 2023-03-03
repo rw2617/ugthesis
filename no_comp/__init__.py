@@ -14,19 +14,13 @@ class C(BaseConstants):
     SELLER_ROLE = 'Seller'
     BUYER_ROLE = 'Buyer'
 
-
-class Group(BaseGroup):
-    price = models.CurrencyField(
+    
+class Player(BasePlayer):
+    price = models.IntegerField(
         min=0,
         max=150,
-        doc="""Amount offered by the seller""",
-        label="Please enter an amount from 0 to 150",
     )
 
-    value = models.IntegerField(
-        
-    )
-    
     offer_selected = models.IntegerField(
         label="Make a selection.",
         initial=0,
@@ -45,6 +39,19 @@ class Group(BaseGroup):
     )
 
 
+class Group(BaseGroup):
+    price = models.CurrencyField(
+        min=0,
+        max=150,
+        doc="""Amount offered by the seller""",
+        label="Please enter an amount from 0 to 150",
+    )
+
+    value = models.IntegerField(
+        
+    )
+
+
 class Subsession(BaseSubsession):
     pass
 
@@ -53,22 +60,16 @@ def creating_session(subsession):
     for group in subsession.get_groups():
         group.value = random.choice([50, 150])
 
-class Player(BasePlayer):
-    price = models.IntegerField(
-        min=0,
-        max=150,
-    )
-
 
 # FUNCTIONS
 
-def set_payoffs(group: Group):
+def set_payoffs(group):
 
     p1 = group.get_player_by_id(1)
     p2 = group.get_player_by_id(2)
 
-    offer_selected = group.field_maybe_none('offer_selected')
-    offer_selected2 = group.field_maybe_none('offer_selected2')
+    offer_selected = p2.field_maybe_none('offer_selected')
+    offer_selected2 = p2.field_maybe_none('offer_selected2')
 
     if offer_selected == 1:
         p1.payoff = group.price
@@ -121,7 +122,7 @@ class Respond(Page):
         else:
             return ['offer_selected']
 
-    form_model = 'group'
+    form_model = 'player'
     
     @staticmethod
     def is_displayed(player: Player):
