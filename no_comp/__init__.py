@@ -8,7 +8,7 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'no_comp'
-    NUM_ROUNDS = 2
+    NUM_ROUNDS = 4
     INSTRUCTIONS_TEMPLATE = 'no_comp/instructions.html'
     PLAYERS_PER_GROUP = 2
     SELLER_ROLE = 'Seller'
@@ -38,6 +38,10 @@ class Player(BasePlayer):
         ]
     )
 
+    value = models.IntegerField(
+        
+    )
+
 
 class Group(BaseGroup):
     price = models.CurrencyField(
@@ -52,6 +56,7 @@ class Group(BaseGroup):
     )
 
 
+
 class Subsession(BaseSubsession):
     pass
 
@@ -59,9 +64,9 @@ def creating_session(subsession):
 
     for group in subsession.get_groups():
         group.value = random.choice([50, 150])
+        for player in group.get_players():
+            player.value = group.value
 
-
-# FUNCTIONS
 
 def set_payoffs(group):
 
@@ -81,8 +86,7 @@ def set_payoffs(group):
 
     if offer_selected2 == 2:
         p1.payoff = 0
-        p2.payoff = 0
-    
+        p2.payoff = 0 
 
 # PAGES
 class Introduction(Page):
