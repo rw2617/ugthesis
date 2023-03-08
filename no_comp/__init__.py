@@ -56,12 +56,10 @@ class Group(BaseGroup):
     )
 
 
-
 class Subsession(BaseSubsession):
     pass
 
 def creating_session(subsession):
-
     for group in subsession.get_groups():
         group.value = random.choice([50, 150])
         for player in group.get_players():
@@ -87,6 +85,7 @@ def set_payoffs(group):
     if offer_selected2 == 2:
         p1.payoff = 0
         p2.payoff = 0 
+
 
 # PAGES
 class Introduction(Page):
