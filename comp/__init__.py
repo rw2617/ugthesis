@@ -193,6 +193,21 @@ class Respond(Page):
             responder_payoff1=group.value - group.price1,
             responder_payoff2=group.value - group.price2,
             )
+    
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        p3 = player.group.get_player_by_id(3)
+
+        offer_selected = p3.field_maybe_none('offer_selected')
+        offer_selected2 = p3.field_maybe_none('offer_selected2')
+        offer_selected3 = p3.field_maybe_none('offer_selected3')
+
+        if offer_selected == 1 or offer_selected2 == 1:
+            player.group.offer_selected = 1
+        if offer_selected == 2 or offer_selected3 == 2:
+            player.group.offer_selected = 2
+        else:
+            player.group.offer_selected = 3
 
 
 class RespondWaitPage(WaitPage):
@@ -206,6 +221,7 @@ class Results(Page):
         return dict(
             payoff=participant.payoff,
         )"""
+    pass
 
 
 class ShuffleWaitPage(WaitPage):

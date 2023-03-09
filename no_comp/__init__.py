@@ -8,7 +8,7 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'no_comp'
-    NUM_ROUNDS = 4
+    NUM_ROUNDS = 15
     INSTRUCTIONS_TEMPLATE = 'no_comp/instructions.html'
     PLAYERS_PER_GROUP = 2
     SELLER_ROLE = 'Seller'
@@ -53,6 +53,10 @@ class Group(BaseGroup):
 
     value = models.IntegerField(
         
+    )
+
+    offer_selected = models.IntegerField(
+
     )
 
 
@@ -137,6 +141,18 @@ class Respond(Page):
         return dict(
             responder_payoff=group.value - group.price,
             )
+    
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        p2 = player.group.get_player_by_id(2)
+
+        offer_selected = p2.field_maybe_none('offer_selected')
+    
+        if offer_selected == 1:
+            player.group.offer_selected = 1
+        else:
+            player.group.offer_selected = 2
+
 
 class RespondWaitPage(WaitPage):
     after_all_players_arrive = set_payoffs
