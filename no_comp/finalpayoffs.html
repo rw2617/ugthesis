@@ -1,0 +1,19 @@
+{{ block title }}Final Payoffs{{ endblock }}
+{{ block content }}
+    <p>
+        One round was chosen randomly for payment.
+        <strong>Round {{ C.random_round }}</strong>
+    </p>
+    <p>table</p>
+    
+    <p>
+        Your payoff is:
+        <strong>{{ C.random_round.player.payoff }}</strong>
+    </p>
+{{ endif }}
+    
+{{ next_button }}
+
+{{ include C.INSTRUCTIONS_TEMPLATE }}
+
+{{ endblock }}

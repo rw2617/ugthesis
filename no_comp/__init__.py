@@ -8,11 +8,12 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'no_comp'
-    NUM_ROUNDS = 15
+    NUM_ROUNDS = 10
     INSTRUCTIONS_TEMPLATE = 'no_comp/instructions.html'
     PLAYERS_PER_GROUP = 2
     SELLER_ROLE = 'Seller'
     BUYER_ROLE = 'Buyer'
+    random_round = random.choice([1,2,3,4,5,6,7,8,9,10])
 
     
 class Player(BasePlayer):
@@ -93,7 +94,9 @@ def set_payoffs(group):
 
 # PAGES
 class Introduction(Page):
-    pass
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
 
 
 class Propose(Page):
@@ -178,6 +181,12 @@ class ShuffleWaitPage(WaitPage):
         subsession.group_randomly(fixed_id_in_group=True)
 
 
+class FinalPayoffs(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 10
+
+
 page_sequence = [
     Introduction,
     Propose,
@@ -186,5 +195,6 @@ page_sequence = [
     RespondWaitPage,
     Results,
     ShuffleWaitPage,
+    FinalPayoffs,
 ]
 

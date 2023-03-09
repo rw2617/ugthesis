@@ -132,7 +132,9 @@ def set_payoffs(group):
 
 # PAGES
 class Introduction(Page):
-    pass
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
 
 
 class Propose(Page):
@@ -232,6 +234,12 @@ class ShuffleWaitPage(WaitPage):
         subsession.group_randomly(fixed_id_in_group=True)
 
 
+class FinalPayoffs(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 10
+
+
 page_sequence = [
     Introduction,
     Propose,
@@ -240,4 +248,5 @@ page_sequence = [
     RespondWaitPage,
     Results,
     ShuffleWaitPage,
+    FinalPayoffs,
 ]
