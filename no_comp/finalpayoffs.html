@@ -4,15 +4,31 @@
         One round was chosen randomly for payment.
         <strong>Round {{ C.random_round }}</strong>
     </p>
-    <p>table</p>
-    
+    <table>
+        <tr>
+          <th>Round    </th>
+          <th>Payoff</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>{{ r1_payoff }}</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>{{ r2_payoff }}</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>{{ r3_payoff }}</td>
+        </tr>
+    </table>
+    <p></p>
     <p>
         Your payoff is:
-        <strong>{{ C.random_round.player.payoff }}</strong>
+        <strong>{{ random_payoff }}</strong>
     </p>
-{{ endif }}
     
-{{ next_button }}
+
 
 {{ include C.INSTRUCTIONS_TEMPLATE }}
 

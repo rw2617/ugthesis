@@ -14,6 +14,7 @@ class C(BaseConstants):
     SELLER1_ROLE = 'Seller'
     SELLER2_ROLE = 'Seller'
     BUYER_ROLE = 'Buyer'
+    random_round = random.randint(1, NUM_ROUNDS)
 
 
 class Player(BaseGroup):
@@ -226,18 +227,18 @@ class Results(Page):
     pass
 
 
+class FinalPayoffs(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == C.NUM_ROUNDS
+
+
 class ShuffleWaitPage(WaitPage):
     wait_for_all_groups = True
 
     @staticmethod
     def after_all_players_arrive(subsession):
         subsession.group_randomly(fixed_id_in_group=True)
-
-
-class FinalPayoffs(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == 10
 
 
 page_sequence = [
@@ -247,6 +248,6 @@ page_sequence = [
     Respond,
     RespondWaitPage,
     Results,
-    ShuffleWaitPage,
     FinalPayoffs,
+    ShuffleWaitPage,
 ]

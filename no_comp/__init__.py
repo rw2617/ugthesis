@@ -8,12 +8,12 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'no_comp'
-    NUM_ROUNDS = 10
+    NUM_ROUNDS = 3
     INSTRUCTIONS_TEMPLATE = 'no_comp/instructions.html'
     PLAYERS_PER_GROUP = 2
     SELLER_ROLE = 'Seller'
     BUYER_ROLE = 'Buyer'
-    random_round = random.choice([1,2,3,4,5,6,7,8,9,10])
+    random_round = random.randint(1, NUM_ROUNDS)
 
     
 class Player(BasePlayer):
@@ -171,7 +171,25 @@ class Results(Page):
             responder_payoff1=group.value - group.price1,
             responder_payoff2=group.value - group.price2,
             )"""
+            
     pass
+
+
+class FinalPayoffs(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == C.NUM_ROUNDS
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        group = player.group
+        return dict(
+            random_payoff=player.in_round(C.random_round).payoff,
+            r1_payoff = player.in_round(1).payoff,
+            r2_payoff = player.in_round(2).payoff,
+            r3_payoff = player.in_round(3).payoff,
+            )
+    
 
 class ShuffleWaitPage(WaitPage):
     wait_for_all_groups = True
@@ -181,12 +199,6 @@ class ShuffleWaitPage(WaitPage):
         subsession.group_randomly(fixed_id_in_group=True)
 
 
-class FinalPayoffs(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == 10
-
-
 page_sequence = [
     Introduction,
     Propose,
@@ -194,7 +206,7 @@ page_sequence = [
     Respond,
     RespondWaitPage,
     Results,
-    ShuffleWaitPage,
     FinalPayoffs,
+    ShuffleWaitPage,
 ]
 
