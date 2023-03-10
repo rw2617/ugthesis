@@ -10,52 +10,23 @@
           <th>Payoff</th>
         </tr>
         <tr>
-          <td>1</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td></td>
-        </tr>
+            <td>1</td>
+            <td>{{ r1_payoff }}</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>{{ r2_payoff }}</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>{{ r3_payoff }}</td>
+          </tr>
     </table>
-    
+    <p></p>
     <p>
         Your payoff is:
-        <strong>{{ C.random_round.player.payoff }}</strong>
+        <strong>{{ random_payoff }}</strong>
     </p>
-{{ endif }}
     
 {{ next_button }}
 

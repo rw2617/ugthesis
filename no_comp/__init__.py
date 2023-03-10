@@ -20,6 +20,8 @@ class Player(BasePlayer):
     price = models.IntegerField(
         min=0,
         max=150,
+        label="Please enter an amount from 0 to 150",
+
     )
 
     offer_selected = models.IntegerField(
@@ -182,7 +184,6 @@ class FinalPayoffs(Page):
     
     @staticmethod
     def vars_for_template(player: Player):
-        group = player.group
         return dict(
             random_payoff=player.in_round(C.random_round).payoff,
             r1_payoff = player.in_round(1).payoff,

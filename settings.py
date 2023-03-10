@@ -3,7 +3,18 @@ from os import environ
 SESSION_CONFIGS = [
 
     #competition
+    dict(
+        name='competition_risk',
+        app_sequence=['comp'],
+        num_demo_participants=3,
+        known_probability=True,
+    ),
     
+    dict(
+        name='competition_uncertain',
+        app_sequence=['comp'],
+        num_demo_participants=3,
+    ),
 
     #no competition
     dict(

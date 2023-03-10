@@ -8,7 +8,7 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'competition'
-    NUM_ROUNDS = 2
+    NUM_ROUNDS = 3
     INSTRUCTIONS_TEMPLATE = 'comp/instructions.html'
     PLAYERS_PER_GROUP = 3
     SELLER1_ROLE = 'Seller'
@@ -17,15 +17,17 @@ class C(BaseConstants):
     random_round = random.randint(1, NUM_ROUNDS)
 
 
-class Player(BaseGroup):
+class Player(BasePlayer):
     price1 = models.IntegerField(
         min=0,
         max=150,
+        label="Please enter an amount from 0 to 150",
     )
 
     price2 = models.IntegerField(
         min=0,
         max=150,
+        label="Please enter an amount from 0 to 150",
     )
 
     #offer_selected, both prices less than value
@@ -91,6 +93,10 @@ class Group(BaseGroup):
     value = models.IntegerField(
         
     )
+    
+    offer_selected = models.IntegerField(
+
+    )
 
 
 class Subsession(BaseSubsession):
@@ -114,17 +120,17 @@ def set_payoffs(group):
     offer_selected3 = p3.field_maybe_none('offer_selected3')
     offer_selected4 = p3.field_maybe_none('offer_selected4')
 
-    if group.offer_selected == 3 or group.offer_selected2 == 3 or group.offer_selected3 == 3 or group.offer_selected4 == 3:
+    if offer_selected == 3 or offer_selected2 == 3 or offer_selected3 == 3 or offer_selected4 == 3:
         p1.payoff = 0
         p2.payoff = 0
         p3.payoff = 0
 
-    if group.offer_selected == 2 or group.offer_selected3 == 2:
+    if offer_selected == 2 or offer_selected3 == 2:
         p1.payoff = 0
         p2.payoff = group.price2
         p3.payoff = group.value - group.price2
 
-    if group.offer_selected == 1 or group.offer_selected2 == 1:
+    if offer_selected == 1 or offer_selected2 == 1:
         p1.payoff = group.price1
         p2.payoff = 0
         p3.payoff = group.value - group.price1
@@ -207,7 +213,7 @@ class Respond(Page):
 
         if offer_selected == 1 or offer_selected2 == 1:
             player.group.offer_selected = 1
-        if offer_selected == 2 or offer_selected3 == 2:
+        elif offer_selected == 2 or offer_selected3 == 2:
             player.group.offer_selected = 2
         else:
             player.group.offer_selected = 3
@@ -232,6 +238,14 @@ class FinalPayoffs(Page):
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
 
+    @staticmethod
+    def vars_for_template(player: Player):
+        return dict(
+            random_payoff=player.in_round(C.random_round).payoff,
+            r1_payoff = player.in_round(1).payoff,
+            r2_payoff = player.in_round(2).payoff,
+            r3_payoff = player.in_round(3).payoff,
+            )
 
 class ShuffleWaitPage(WaitPage):
     wait_for_all_groups = True
