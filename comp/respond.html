@@ -1,10 +1,37 @@
 {{ block title }}Accept or Reject{{ endblock }}
 {{ block content }}
-
     <p>
         You are a <strong>Buyer</strong>, and your value is <strong>{{ group.value }}</strong>.
     </p>
-
+{{ if group.price1 > group.value }}
+    <p>
+        Seller 1 offered price {{ group.price1 }}. 
+        Because {{ group.price1 }} is greater than your value, 
+        {{ group.value }}, you cannot accept this offer.
+    </p>
+    <p>
+        Seller 2 offered price {{ group.price2 }}. If you accept, 
+        this means that you will receive {{ responder_payoff2 }} 
+        and the seller will receive {{ group.price2 }}.
+    </p>
+    <p>
+        If you Reject, everyone will receive a payoff of 0.
+    </p>
+{{ else if group.price2 > group.value }}
+    <p>
+        Seller 1 offered price {{ group.price1 }}. If you accept, 
+        this means that you will receive {{ responder_payoff1 }} 
+        and the seller will receive {{ group.price1 }}.
+    </p>
+    <p>
+        Seller 2 offered price {{ group.price2 }}. 
+        Because {{ group.price2 }} is greater than your value, 
+        {{ group.value }}, you cannot accept this offer.
+    </p>
+    <p>
+        If you Reject, everyone will receive a payoff of 0.
+    </p>
+{{ else }}
     <p>
         Seller 1 offered price {{ group.price1 }}. If you accept, 
         this means that you will receive {{ responder_payoff1 }} 
@@ -20,8 +47,9 @@
     <p>
         If you Reject both, everyone will receive a payoff of 0.
     </p>
+{{ endif }}
 
-    {{ formfields }}
+{{ formfields }}
 
 {{ next_button }}
 {{ include C.INSTRUCTIONS_TEMPLATE }}
