@@ -5,24 +5,23 @@
     </p>
     {{ if group.price > group.value }}
         <p>
-            The seller offered price {{ group.price }}. 
+            The seller offered a price of {{ group.price }}. 
             Because {{ group.price }} is greater than your value, 
             {{ group.value }}, you cannot accept this offer.
         </p>
     {{ else }}
         <p>
-            The seller offered price {{ group.price }}. If you accept, 
-            this means that you will receive {{ responder_payoff }},
+            The seller offered a price of {{ group.price }}. If you accept 
+            this offer, this means that you will receive {{ responder_payoff }},
             and the seller will receive {{ group.price }}.
         </p>
         <p>
-            If you reject, both you and the seller will receive a payoff of 0.
+            If you reject this offer, both you and the seller will receive a payoff of 0.
         </p>
     {{ endif }}
 
     {{ formfields }}
     
     {{ next_button }}
-    {{ include C.INSTRUCTIONS_TEMPLATE }}
 
 {{ endblock }}
