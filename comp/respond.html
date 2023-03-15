@@ -3,7 +3,7 @@
     <p>
         You are a <strong>Buyer</strong>, and your value is <strong>{{ group.value }}</strong>.
     </p>
-{{ if group.price1 > group.value || group.price2 > group.value }}
+{{ if group.price1 > group.value and group.price2 > group.value }}
     <p>
         Seller 1 offered a price of {{ group.price1 }}. 
         Because {{ group.price1 }} is greater than your value, 
