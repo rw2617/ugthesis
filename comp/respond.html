@@ -24,18 +24,20 @@
         {{ group.value }}, you cannot accept this offer.
     </p>
     <p>
-        Seller 2 offered a price of {{ group.price2 }}. If you accept, 
-        this means that you will receive {{ responder_payoff2 }} 
-        and the seller will receive {{ group.price2 }}.
+        Seller 2 offered price {{ group.price2 }}. If you accept, 
+        this means that you will receive <strong>
+        {{ responder_payoff2 }}</strong>, Seller 2 will receive 
+        {{ group.price2 }}, and Seller 1 will receive 0.
     </p>
     <p>
         If you Reject both offers, everyone will receive a payoff of 0.
     </p>
 {{ elif group.price2 > group.value }}
     <p>
-        Seller 1 offered a price of {{ group.price1 }}. If you accept, 
-        this means that you will receive {{ responder_payoff1 }} 
-        and the seller will receive {{ group.price1 }}.
+        Seller 1 offered price {{ group.price1 }}. If you accept, 
+        this means that you will receive <strong>
+        {{ responder_payoff1 }}</strong>, Seller 1 will receive 
+        {{ group.price1 }}, and Seller 2 will receive 0.
     </p>
     <p>
         Seller 2 offered a price of {{ group.price2 }}. 
@@ -48,14 +50,16 @@
 {{ else }}
     <p>
         Seller 1 offered price {{ group.price1 }}. If you accept, 
-        this means that you will receive {{ responder_payoff1 }} 
-        and the seller will receive {{ group.price1 }}.
+        this means that you will receive <strong>
+        {{ responder_payoff1 }}</strong>, Seller 1 will receive 
+        {{ group.price1 }}, and Seller 2 will receive 0.
     </p>
 
     <p>
         Seller 2 offered price {{ group.price2 }}. If you accept, 
-        this means that you will receive {{ responder_payoff2 }},
-        and the seller will receive {{ group.price2 }}.
+        this means that you will receive <strong>
+        {{ responder_payoff2 }}</strong>, Seller 2 will receive 
+        {{ group.price2 }}, and Seller 1 will receive 0.
     </p>
 
     <p>
