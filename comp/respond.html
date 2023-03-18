@@ -15,7 +15,7 @@
         {{ group.value }}, you cannot accept this offer.
     </p>
     <p>
-        If you Reject both offers, everyone will receive a payoff of 0.
+        If you Reject both offers, everyone will receive a payoff of 0 points.
     </p>
 {{ elif group.price1 > group.value }}
     <p>
@@ -27,17 +27,17 @@
         Seller 2 offered price {{ group.price2 }}. If you accept, 
         this means that you will receive <strong>
         {{ responder_payoff2 }}</strong>, Seller 2 will receive 
-        {{ group.price2 }}, and Seller 1 will receive 0.
+        {{ group.price2 }}, and Seller 1 will receive 0 points.
     </p>
     <p>
-        If you Reject both offers, everyone will receive a payoff of 0.
+        If you Reject both offers, everyone will receive a payoff of 0 points.
     </p>
 {{ elif group.price2 > group.value }}
     <p>
         Seller 1 offered price {{ group.price1 }}. If you accept, 
         this means that you will receive <strong>
         {{ responder_payoff1 }}</strong>, Seller 1 will receive 
-        {{ group.price1 }}, and Seller 2 will receive 0.
+        {{ group.price1 }}, and Seller 2 will receive 0 points.
     </p>
     <p>
         Seller 2 offered a price of {{ group.price2 }}. 
@@ -45,25 +45,25 @@
         {{ group.value }}, you cannot accept this offer.
     </p>
     <p>
-        If you Reject both offers, everyone will receive a payoff of 0.
+        If you Reject both offers, everyone will receive a payoff of 0 points.
     </p>
 {{ else }}
     <p>
         Seller 1 offered price {{ group.price1 }}. If you accept, 
         this means that you will receive <strong>
         {{ responder_payoff1 }}</strong>, Seller 1 will receive 
-        {{ group.price1 }}, and Seller 2 will receive 0.
+        {{ group.price1 }}, and Seller 2 will receive 0 points.
     </p>
 
     <p>
         Seller 2 offered price {{ group.price2 }}. If you accept, 
         this means that you will receive <strong>
         {{ responder_payoff2 }}</strong>, Seller 2 will receive 
-        {{ group.price2 }}, and Seller 1 will receive 0.
+        {{ group.price2 }}, and Seller 1 will receive 0 points.
     </p>
 
     <p>
-        If you Reject both offers, everyone will receive a payoff of 0.
+        If you Reject both offers, everyone will receive a payoff of 0 points.
     </p>
 {{ endif }}
 
