@@ -70,9 +70,10 @@ class Player(BasePlayer):
         ]
     )
 
-    value = models.IntegerField(
-        
-    )
+    value = models.IntegerField()
+
+    round_payoff = models.CurrencyField()
+
 
 
 class Group(BaseGroup):
@@ -134,6 +135,31 @@ def set_payoffs(group):
         p1.payoff = group.price1
         p2.payoff = 0
         p3.payoff = group.value - group.price1
+
+    '''
+    #actual payoff variable is the random one
+    #save round payoff into 
+    #if last round, payoff is the random
+
+    round_payoff = models.CurrencyField()random_payoff_round = models.IntegerField()
+    round_payoff = models.CurrencyField()
+    random_payoff_round = models.IntegerField()
+    p1.payoff = 
+
+
+    if group.round_number == C.NUM_ROUNDS:
+            import random
+            p1.random_payoff_round = random.randint(C.NUM_ROUNDS_NOBEL + 1, C.NUM_ROUNDS)
+            p2.random_payoff_round = random.randint(C.NUM_ROUNDS_NOBEL + 1, C.NUM_ROUNDS)
+            random_player_1 = p1.in_round(p1.random_payoff_round)
+            random_player_2 = p2.in_round(p2.random_payoff_round)
+            p1.payoff = random_player_1.round_payoff
+            p2.payoff = random_player_2.round_payoff
+
+        else:
+            p1.round_payoff = p1.round_payoff
+            p2.round_payoff = p2.round_payoff
+    '''
         
 
 
@@ -241,11 +267,12 @@ class FinalPayoffs(Page):
     @staticmethod
     def vars_for_template(player: Player):
         return dict(
-            random_payoff=player.in_round(C.random_round).payoff,
             r1_payoff = player.in_round(1).payoff,
             r2_payoff = player.in_round(2).payoff,
             r3_payoff = player.in_round(3).payoff,
+            random_payoff = player.in_round(C.random_round).payoff,
             )
+            
 
 class ShuffleWaitPage(WaitPage):
     wait_for_all_groups = True
