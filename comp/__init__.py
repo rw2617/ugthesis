@@ -9,7 +9,7 @@ This is an ultimatium bargaining game.
 class C(BaseConstants):
     NAME_IN_URL = 'competition'
     NUM_ROUNDS = 3
-    INSTRUCTIONS_TEMPLATE = 'comp/instructions.html'
+    INSTRUCTIONS_TEMPLATE = 'comp/Instructions.html'
     PLAYERS_PER_GROUP = 3
     SELLER1_ROLE = 'Seller'
     SELLER2_ROLE = 'Seller'
@@ -75,7 +75,6 @@ class Player(BasePlayer):
     round_payoff = models.CurrencyField()
 
 
-
 class Group(BaseGroup):
     price1 = models.CurrencyField(
         min=0,
@@ -91,13 +90,9 @@ class Group(BaseGroup):
         label="Please enter an amount from 0 to 150",
     )
 
-    value = models.IntegerField(
-        
-    )
+    value = models.IntegerField()
     
-    offer_selected = models.IntegerField(
-
-    )
+    offer_selected = models.IntegerField()
 
 
 class Subsession(BaseSubsession):
@@ -122,26 +117,31 @@ def set_payoffs(group):
     offer_selected4 = p3.field_maybe_none('offer_selected4')
 
     if offer_selected == 3 or offer_selected2 == 3 or offer_selected3 == 3 or offer_selected4 == 3:
-        p1.payoff = 0
-        p2.payoff = 0
-        p3.payoff = 0
+        p1.round_payoff = 0
+        p2.round_payoff = 0
+        p3.round_payoff = 0
 
     if offer_selected == 2 or offer_selected3 == 2:
-        p1.payoff = 0
-        p2.payoff = group.price2
-        p3.payoff = group.value - group.price2
+        p1.round_payoff = 0
+        p2.round_payoff = group.price2
+        p3.round_payoff = group.value - group.price2
 
     if offer_selected == 1 or offer_selected2 == 1:
-        p1.payoff = group.price1
-        p2.payoff = 0
-        p3.payoff = group.value - group.price1
+        p1.round_payoff = group.price1
+        p2.round_payoff = 0
+        p3.round_payoff = group.value - group.price1
+
+    if group.round_number == C.NUM_ROUNDS:
+        p1.payoff = p1.round_payoff
+        p2.payoff = p2.round_payoff
+        p3.payoff = p3.round_payoff
 
     '''
     #actual payoff variable is the random one
-    #save round payoff into 
+    #save round payoff info 
     #if last round, payoff is the random
 
-    round_payoff = models.CurrencyField()random_payoff_round = models.IntegerField()
+    random_payoff_round = models.IntegerField()
     round_payoff = models.CurrencyField()
     random_payoff_round = models.IntegerField()
     p1.payoff = 
@@ -267,11 +267,11 @@ class FinalPayoffs(Page):
     @staticmethod
     def vars_for_template(player: Player):
         return dict(
-            r1_payoff = player.in_round(1).payoff,
-            r2_payoff = player.in_round(2).payoff,
-            r3_payoff = player.in_round(3).payoff,
-            random_payoff = player.in_round(C.random_round).payoff,
-            )
+            r1_payoff = player.in_round(1).round_payoff,
+            r2_payoff = player.in_round(2).round_payoff,
+            r3_payoff = player.in_round(3).round_payoff,
+            random_payoff = player.in_round(C.random_round).round_payoff,
+        )
             
 
 class ShuffleWaitPage(WaitPage):

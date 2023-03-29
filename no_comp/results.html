@@ -10,7 +10,7 @@
         <p>
             The buyer accepted this offer.
             This round you have earned:
-            <strong>{{ player.payoff }}</strong>
+            <strong>{{ player.round_payoff }}</strong>
         </p>
     {{ else }}
         <p>
@@ -18,7 +18,7 @@
         </p>
         <p>
             This round you have earned:
-            <strong>{{ player.payoff }}</strong>
+            <strong>{{ player.round_payoff }}</strong>
         </p>
     {{ endif }}
     </p>
@@ -38,7 +38,7 @@
     {{ endif }}
     <p>
         This round you have earned:
-        <strong>{{ player.payoff }}</strong>
+        <strong>{{ player.round_payoff }}</strong>
     </p>
 {{ endif }}
     

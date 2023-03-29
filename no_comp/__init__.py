@@ -21,7 +21,6 @@ class Player(BasePlayer):
         min=0,
         max=150,
         label="Please enter an amount from 0 to 150",
-
     )
 
     offer_selected = models.IntegerField(
@@ -41,9 +40,9 @@ class Player(BasePlayer):
         ]
     )
 
-    value = models.IntegerField(
-        
-    )
+    value = models.IntegerField()
+
+    round_payoff = models.CurrencyField()
 
 
 class Group(BaseGroup):
@@ -54,17 +53,14 @@ class Group(BaseGroup):
         label="Please enter an amount from 0 to 150",
     )
 
-    value = models.IntegerField(
-        
-    )
+    value = models.IntegerField()
 
-    offer_selected = models.IntegerField(
-
-    )
+    offer_selected = models.IntegerField()
 
 
 class Subsession(BaseSubsession):
     pass
+
 
 def creating_session(subsession):
     for group in subsession.get_groups():
@@ -82,16 +78,20 @@ def set_payoffs(group):
     offer_selected2 = p2.field_maybe_none('offer_selected2')
 
     if offer_selected == 1:
-        p1.payoff = group.price
-        p2.payoff = group.value - group.price
+        p1.round_payoff = group.price
+        p2.round_payoff = group.value - group.price
 
     if offer_selected == 2:
-        p1.payoff = 0
-        p2.payoff = 0
+        p1.round_payoff = 0
+        p2.round_payoff = 0
 
     if offer_selected2 == 2:
-        p1.payoff = 0
-        p2.payoff = 0 
+        p1.round_payoff = 0
+        p2.round_payoff = 0
+
+    if group.round_number == C.NUM_ROUNDS:
+        p1.payoff = p1.round_payoff
+        p2.payoff = p2.round_payoff
 
 
 # PAGES
@@ -185,11 +185,10 @@ class FinalPayoffs(Page):
     @staticmethod
     def vars_for_template(player: Player):
         return dict(
-            random_payoff=player.in_round(C.random_round).payoff,
-            r1_payoff = player.in_round(1).payoff,
-            r2_payoff = player.in_round(2).payoff,
-            r3_payoff = player.in_round(3).payoff,
-            )
+            r1_payoff = player.in_round(1).round_payoff,
+            r2_payoff = player.in_round(2).round_payoff,
+            random_payoff = player.in_round(C.random_round).round_payoff,
+        )
     
 
 class ShuffleWaitPage(WaitPage):
