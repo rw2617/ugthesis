@@ -114,6 +114,12 @@ class Propose(Page):
         return player.id_in_group == 1
     
     @staticmethod
+    def vars_for_template(player: Player):
+        return dict(
+            round_number=player.round_number,
+            )
+    
+    @staticmethod
     def before_next_page(player, timeout_happened):
         if player.id_in_group == 1:
             player.group.price = player.price
@@ -145,6 +151,7 @@ class Respond(Page):
         group = player.group
         return dict(
             responder_payoff=group.value - group.price,
+            round_number=player.round_number,
             )
     
     @staticmethod
@@ -173,8 +180,11 @@ class Results(Page):
             responder_payoff1=group.value - group.price1,
             responder_payoff2=group.value - group.price2,
             )"""
-            
-    pass
+    @staticmethod
+    def vars_for_template(player: Player):
+        return dict(
+            round_number=player.round_number,
+        )
 
 
 class FinalPayoffs(Page):

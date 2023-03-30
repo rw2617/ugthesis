@@ -162,7 +162,6 @@ def set_payoffs(group):
     '''
         
 
-
 # PAGES
 class Introduction(Page):
     @staticmethod
@@ -187,6 +186,12 @@ class Propose(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.id_in_group == 1 or player.id_in_group == 2
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return dict(
+            round_number=player.round_number,
+            )
     
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -227,6 +232,7 @@ class Respond(Page):
         return dict(
             responder_payoff1=group.value - group.price1,
             responder_payoff2=group.value - group.price2,
+            round_number=player.round_number,
             )
     
     @staticmethod
@@ -256,7 +262,11 @@ class Results(Page):
         return dict(
             payoff=participant.payoff,
         )"""
-    pass
+    @staticmethod
+    def vars_for_template(player: Player):
+        return dict(
+            round_number=player.round_number,
+        )
 
 
 class FinalPayoffs(Page):
