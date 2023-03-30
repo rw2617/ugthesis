@@ -10,17 +10,17 @@
     </p>
 
     <p>
-        You and another seller will both offer a price 
+        You and another seller will each offer a price 
         to the buyer. The buyer can accept one or none 
         of the offers. If the buyer accepts your price, 
         you will receive your price, and the buyer will 
-        receive 50 minus price or 150 minus price. If 
+        receive 50 - price or 150 - price. If 
         your price is rejected, you will receive 0 points.
     </p>
 
     {{ if 'known_probability' in session.config }}
         <p>
-            The buyer has value = 50 with probability 50% and value = 150
+            The buyer has a value of 50 with probability 50% and a value of 150
             with probability 50%.
         </p>
     {{ endif }}

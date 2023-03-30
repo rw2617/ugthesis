@@ -1,32 +1,30 @@
 {{ block title }}Final Payoffs{{ endblock }}
 {{ block content }}
-    <p>
-      Round<strong>{{ C.random_round }}</strong>was chosen randomly for payment.
-    </p>
-    <table>
-        <tr>
-          <th>Round</th>
-          <th>Payoff</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>{{ r1_payoff }}</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>{{ r2_payoff }}</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>{{ r3_payoff }}</td>
-          </tr>
-    </table>
-    <p></p>
-    <p>
-        Your payoff is:
-        <strong>{{ random_payoff }}</strong>
-    </p>
-    
-{{ next_button }}
+  <table>
+    <tr>
+      <th>Round</th>
+      <th>Payoff</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>{{ r1_payoff }}</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>{{ r2_payoff }}</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>{{ r3_payoff }}</td>
+    </tr>
+  </table>
+  <p>
+    The round randomly selected for payment is <strong>Round {{ C.random_round }}</strong>.
+  </p>
+  <p></p>
+  <p>
+    Your payoff is:
+    <strong>{{ random_payoff }}</strong>
+  </p>
 
 {{ endblock }}
