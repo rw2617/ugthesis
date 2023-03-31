@@ -8,7 +8,7 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'competition'
-    NUM_ROUNDS = 15
+    NUM_ROUNDS = 15 
     INSTRUCTIONS_TEMPLATE = 'comp/Instructions.html'
     PLAYERS_PER_GROUP = 3
     SELLER1_ROLE = 'Seller'
@@ -132,9 +132,9 @@ def set_payoffs(group):
         p3.round_payoff = group.value - group.price1
 
     if group.round_number == C.NUM_ROUNDS:
-        p1.payoff = p1.round_payoff
-        p2.payoff = p2.round_payoff
-        p3.payoff = p3.round_payoff
+        p1.payoff = 15 + p1.round_payoff * 0.2
+        p2.payoff = 15 + p2.round_payoff * 0.2
+        p3.payoff = 15 + p3.round_payoff * 0.2
 
     '''
     #actual payoff variable is the random one

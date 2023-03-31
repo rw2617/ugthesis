@@ -90,8 +90,8 @@ def set_payoffs(group):
         p2.round_payoff = 0
 
     if group.round_number == C.NUM_ROUNDS:
-        p1.payoff = p1.round_payoff
-        p2.payoff = p2.round_payoff
+        p1.payoff = 15 + p1.round_payoff * 0.2
+        p2.payoff = 15 + p2.round_payoff * 0.2
 
 
 # PAGES
