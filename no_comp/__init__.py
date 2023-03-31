@@ -90,8 +90,8 @@ def set_payoffs(group):
         p2.round_payoff = 0
 
     if group.round_number == C.NUM_ROUNDS:
-        p1.payoff = 15 + p1.round_payoff * 0.2
-        p2.payoff = 15 + p2.round_payoff * 0.2
+        p1.payoff = p1.in_round(C.random_round).round_payoff
+        p2.payoff = p2.in_round(C.random_round).round_payoff
 
 
 # PAGES
@@ -195,6 +195,8 @@ class FinalPayoffs(Page):
     @staticmethod
     def vars_for_template(player: Player):
         return dict(
+            random_payoff = player.in_round(C.random_round).round_payoff,
+            dollar_payoff = player.participant.payoff_plus_participation_fee(),
             r1_payoff = player.in_round(1).round_payoff,
             r2_payoff = player.in_round(2).round_payoff,
             r3_payoff = player.in_round(3).round_payoff,
@@ -210,7 +212,6 @@ class FinalPayoffs(Page):
             r13_payoff = player.in_round(13).round_payoff,
             r14_payoff = player.in_round(14).round_payoff,
             r15_payoff = player.in_round(15).round_payoff,
-            random_payoff = player.in_round(C.random_round).round_payoff,
         )
     
 
