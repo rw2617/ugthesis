@@ -8,7 +8,7 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'no_comp'
-    NUM_ROUNDS = 3
+    NUM_ROUNDS = 15
     INSTRUCTIONS_TEMPLATE = 'no_comp/instructions.html'
     PLAYERS_PER_GROUP = 2
     SELLER_ROLE = 'Seller'
@@ -197,6 +197,19 @@ class FinalPayoffs(Page):
         return dict(
             r1_payoff = player.in_round(1).round_payoff,
             r2_payoff = player.in_round(2).round_payoff,
+            r3_payoff = player.in_round(3).round_payoff,
+            r4_payoff = player.in_round(4).round_payoff,
+            r5_payoff = player.in_round(5).round_payoff,
+            r6_payoff = player.in_round(6).round_payoff,
+            r7_payoff = player.in_round(7).round_payoff,
+            r8_payoff = player.in_round(8).round_payoff,
+            r9_payoff = player.in_round(9).round_payoff,
+            r10_payoff = player.in_round(10).round_payoff,
+            r11_payoff = player.in_round(11).round_payoff,
+            r12_payoff = player.in_round(12).round_payoff,
+            r13_payoff = player.in_round(13).round_payoff,
+            r14_payoff = player.in_round(14).round_payoff,
+            r15_payoff = player.in_round(15).round_payoff,
             random_payoff = player.in_round(C.random_round).round_payoff,
         )
     
