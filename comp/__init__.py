@@ -5,7 +5,6 @@ doc = """
 This is an ultimatium bargaining game.
 """
 
-
 class C(BaseConstants):
     NAME_IN_URL = 'competition'
     NUM_ROUNDS = 15
@@ -98,6 +97,7 @@ class Group(BaseGroup):
 class Subsession(BaseSubsession):
     pass
 
+
 def creating_session(subsession):
     for group in subsession.get_groups():
         group.value = random.choice([50, 150])
@@ -135,32 +135,7 @@ def set_payoffs(group):
         p1.payoff = p1.in_round(C.random_round).round_payoff
         p2.payoff = p2.in_round(C.random_round).round_payoff
         p3.payoff = p3.in_round(C.random_round).round_payoff
-        
-    
-    '''
-    #actual payoff variable is the random one
-    #save round payoff info 
-    #if last round, payoff is the random
 
-    random_payoff_round = models.IntegerField()
-    round_payoff = models.CurrencyField()
-    random_payoff_round = models.IntegerField()
-    p1.payoff = 
-
-
-    if group.round_number == C.NUM_ROUNDS:
-            import random
-            p1.random_payoff_round = random.randint(C.NUM_ROUNDS_NOBEL + 1, C.NUM_ROUNDS)
-            p2.random_payoff_round = random.randint(C.NUM_ROUNDS_NOBEL + 1, C.NUM_ROUNDS)
-            random_player_1 = p1.in_round(p1.random_payoff_round)
-            random_player_2 = p2.in_round(p2.random_payoff_round)
-            p1.payoff = random_player_1.round_payoff
-            p2.payoff = random_player_2.round_payoff
-
-        else:
-            p1.round_payoff = p1.round_payoff
-            p2.round_payoff = p2.round_payoff
-    '''
 
 # PAGES
 class Introduction(Page):
@@ -257,11 +232,6 @@ class RespondWaitPage(WaitPage):
 
 class Results(Page):
     """This page displays the earnings of each player"""
-    """@staticmethod
-    def vars_for_template(player: Player):
-        return dict(
-            payoff=participant.payoff,
-        )"""
     @staticmethod
     def vars_for_template(player: Player):
         return dict(
@@ -295,6 +265,7 @@ class FinalPayoffs(Page):
             r14_payoff = player.in_round(14).round_payoff,
             r15_payoff = player.in_round(15).round_payoff,
             )
+
 
 class ShuffleWaitPage(WaitPage):
     wait_for_all_groups = True

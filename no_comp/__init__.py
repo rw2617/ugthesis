@@ -5,7 +5,6 @@ doc = """
 This is an ultimatium bargaining game.
 """
 
-
 class C(BaseConstants):
     NAME_IN_URL = 'no_comp'
     NUM_ROUNDS = 15
@@ -172,14 +171,6 @@ class RespondWaitPage(WaitPage):
 
 class Results(Page):
     """This page displays the earnings of each player"""
-
-    """@staticmethod
-    def vars_for_template(player: Player):
-        group = player.group
-        return dict(
-            responder_payoff1=group.value - group.price1,
-            responder_payoff2=group.value - group.price2,
-            )"""
     @staticmethod
     def vars_for_template(player: Player):
         return dict(
