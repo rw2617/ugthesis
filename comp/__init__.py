@@ -8,7 +8,7 @@ This is an ultimatium bargaining game.
 
 class C(BaseConstants):
     NAME_IN_URL = 'competition'
-    NUM_ROUNDS = 3
+    NUM_ROUNDS = 15
     INSTRUCTIONS_TEMPLATE = 'comp/Instructions.html'
     PLAYERS_PER_GROUP = 3
     SELLER1_ROLE = 'Seller'
