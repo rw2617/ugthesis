@@ -160,7 +160,6 @@ def set_payoffs(group):
             p1.round_payoff = p1.round_payoff
             p2.round_payoff = p2.round_payoff
     '''
-        
 
 # PAGES
 class Introduction(Page):
@@ -292,7 +291,7 @@ class FinalPayoffs(Page):
             r13_payoff = player.in_round(13).round_payoff,
             r14_payoff = player.in_round(14).round_payoff,
             r15_payoff = player.in_round(15).round_payoff,
-            random_payoff = player.in_round(C.random_round).round_payoff,
+            random_payoff = 15 + player.in_round(C.random_round).round_payoff * 0.2,
         )
             
 
