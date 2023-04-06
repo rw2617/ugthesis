@@ -1,4 +1,4 @@
-{{ block title }}Accept or Reject{{ endblock }}
+{{ block title }}You are a Buyer: Accept or Reject{{ endblock }}
 {{ block content }}
     <div class="card" style="width: 250px; position: absolute; right: 100px; top: 50px;">
         <div class="card-body">
@@ -6,22 +6,22 @@
         </div>
     </div>
     <p>
-        You are a <strong>Buyer</strong>, and your value is <strong>{{ group.value }}</strong>.
+        <strong>Your value is {{ group.value }}</strong>.
     </p>
     {{ if group.price > group.value }}
         <p>
-            The seller offered a price of {{ group.price }}. 
+            The Seller offered a price of {{ group.price }}. 
             Because {{ group.price }} is greater than your value, 
             {{ group.value }}, you cannot accept this offer.
         </p>
     {{ else }}
         <p>
-            The seller offered a price of {{ group.price }}. If you accept 
+            The Seller offered a price of {{ group.price }}. If you accept 
             this offer, this means that you will receive {{ responder_payoff }},
-            and the seller will receive {{ group.price }}.
+            and the Seller will receive {{ group.price }}.
         </p>
         <p>
-            If you reject this offer, both you and the seller will receive a payoff of 0 points.
+            If you reject this offer, both you and the Seller will receive a payoff of 0 points.
         </p>
     {{ endif }}
 

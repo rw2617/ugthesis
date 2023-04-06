@@ -8,18 +8,18 @@
 <p>
 {{ if player.id_in_group == 1 }}
     <p>
-        You chose to offer a price of {{ player.price }} to the buyer.
+        You chose to offer a price of {{ player.price }} to the Buyer.
     </p>
     <p>
     {{ if group.offer_selected == 1}}
         <p>
-            The buyer accepted this offer.
+            The Buyer accepted this offer.
             This round you have earned:
             <strong>{{ player.round_payoff }}</strong>
         </p>
     {{ else }}
         <p>
-            The buyer did not accept this offer.
+            The Buyer did not accept this offer.
         </p>
         <p>
             This round you have earned:
