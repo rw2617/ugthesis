@@ -1,10 +1,13 @@
-{{ block title }}You are a Seller: Offer a Price{{ endblock }}
+{{ block title }}Seller: Offer a Price{{ endblock }}
 {{ block content }}
     <div class="card" style="width: 250px; position: absolute; right: 100px; top: 50px;">
         <div class="card-body">
             Round {{ round_number }} out of {{ C.NUM_ROUNDS }} rounds.
         </div>
     </div>
+    <p>
+        You are a <strong>Seller</strong>.
+    </p>
     <p>
         You and another Seller will each offer a price 
         to the Buyer. The Buyer can accept one or none 

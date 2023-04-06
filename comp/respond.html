@@ -1,4 +1,4 @@
-{{ block title }}You are a Buyer: Accept or Reject{{ endblock }}
+{{ block title }}Buyer: Accept or Reject{{ endblock }}
 {{ block content }}
     <div class="card" style="width: 250px; position: absolute; right: 100px; top: 50px;">
         <div class="card-body">
@@ -6,7 +6,7 @@
         </div>
     </div>
     <p>
-        <strong>Your value is {{ group.value }}</strong>.
+        You are a <strong>Buyer</strong>, and your value is <strong>{{ group.value }}</strong>.
     </p>
 {{ if group.price1 > group.value and group.price2 > group.value }}
     <p>

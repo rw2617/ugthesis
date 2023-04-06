@@ -1,4 +1,4 @@
-{{ block title }}You are a Seller: Offer a Price{{ endblock }}
+{{ block title }}Seller: Offer a Price{{ endblock }}
 {{ block content }}
     <div class="card" style="width: 250px; position: absolute; right: 100px; top: 50px;">
         <div class="card-body">
@@ -6,17 +6,19 @@
         </div>
     </div>
     <p>
-        You will offer a price to the Buyer. The Buyer can 
-        accept or reject your offer. If the Buyer accepts 
+        You are a <strong>Seller</strong>.
+    </p>
+    <p>
+        You will offer a price to the buyer. The buyer can 
+        accept or reject your offer. If the buyer accepts 
         your price, you will receive your price, and the 
-        Buyer will receive 50 - price or 150 - price. 
+        buyer will receive 50 - price or 150 - price. 
         If your price is rejected, you will receive 0 points.
     </p>
 
     {{ if 'known_probability' in session.config }}
-        <p><h4>Payoffs for each round</h4>
-
-            The Buyer has a value of 50 with probability 
+        <p>
+            The buyer has a value of 50 with probability 
             50% and a value of 150 with probability 50%.
         </p>
     {{ endif }}
