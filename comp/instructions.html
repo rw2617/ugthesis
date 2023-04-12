@@ -6,18 +6,20 @@
 
         <p>
             In this study, you will be paired randomly and anonymously 
-            in groups of 3 for 15 rounds. Two of you will be the 
+            in groups of three for 15 rounds. Two of you will be the 
             Sellers and the other will be the Buyer. Your role is 
             randomly assigned and constant throughout the session.
         </p>
 
         <p>
-            Buyers will have a value of either 50 or 150 experimental units, which 
-            is randomly assigned every round. The Sellers will each offer a price, 
-            and the Buyer can either accept or reject each price. If the Buyer 
-            accepts a price, the Seller who offered this price will receive the 
-            proposed offer and the Buyer will receive 50 - price or 150 - price. 
-            If the Buyer rejects all offers, all participants will receive 0.
+            Buyers will have a value of either 50 or 150 points, which 
+            is randomly assigned every round. The Sellers will each offer a 
+            price, and the Buyer can accept at most one price. If the Buyer 
+            accepts a price, the Seller who offered this price will receive 
+            the proposed offer and the Buyer will receive 50 minus price or 
+            150 minus price. The other Seller will receive 0 points. If the 
+            Buyer rejects all offers, all participants in the group will 
+            receive 0 points for the round.
         </p>
 
         {{ if 'known_probability' in session.config }}
